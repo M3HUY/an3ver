@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#1a0a1f">
+    <title>For You 💕</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="config.js"></script>
+</head>
+<body class="locked">
+    <canvas id="sky"></canvas>
+    <canvas id="fx"></canvas>
+
+    <!-- Music -->
+    <audio id="bgMusic" loop preload="auto"></audio>
+    <button id="musicToggle" class="music-btn" aria-label="Toggle music" hidden>🎵</button>
+
+    <!-- INTRO: sealed envelope -->
+    <div id="intro" class="intro">
+        <div class="intro-glow"></div>
+        <p class="intro-small" id="introSmall">a little surprise, made only for you</p>
+        <h1 class="intro-name" id="introName">My Love</h1>
+        <button id="envelope" class="envelope" aria-label="Open the surprise">
+            <span class="env-back"></span>
+            <span class="env-letter">💌</span>
+            <span class="env-front"></span>
+            <span class="env-flap"></span>
+            <span class="env-seal">❤️</span>
+        </button>
+        <p class="intro-tap" id="introTap">Tap to open 💌</p>
+    </div>
+
+    <main id="story" class="story" aria-hidden="true">
+
+        <!-- HERO -->
+        <section class="scene hero">
+            <p class="eyebrow">for the one my heart chose</p>
+            <h1 class="hero-name" id="heroName">My Love</h1>
+            <p class="hero-sub" id="subtitle"></p>
+            <div class="days" id="days" hidden>
+                <span class="days-num" id="daysNum">0</span>
+                <span class="days-txt">days of loving you<br><small id="daysSmall"></small></span>
+            </div>
+            <div class="scroll-hint">scroll<span>↓</span></div>
+        </section>
+
+        <!-- PHOTO -->
+        <section class="scene photo-scene reveal">
+            <div class="polaroid" id="polaroid">
+                <span class="pin"></span>
+                <div class="photo-frame">
+                    <img id="photo" alt="Us" hidden>
+                    <div class="photo-empty" id="photoEmpty">
+                        <span>💕</span>
+                        <small>add your picture:<br><b>photo.jpg</b> in the folder</small>
+                    </div>
+                </div>
+                <p class="photo-caption" id="photoCaption"></p>
+            </div>
+            <p class="tap-note">tap the picture 💗</p>
+        </section>
+
+        <!-- LETTER -->
+        <section class="scene letter-scene">
+            <div class="letter reveal" id="letter">
+                <h2 id="letterTitle">To My Dearest Love</h2>
+                <p class="type" id="p1"></p>
+                <p class="type" id="p2"></p>
+                <p class="type" id="p3"></p>
+                <div class="signature" id="signature"></div>
+            </div>
+        </section>
+
+        <!-- REASONS -->
+        <section class="scene reasons-scene reveal">
+            <h2 id="reasonsTitle">Reasons I Love You</h2>
+            <p class="tap-note">tap a heart to open it</p>
+            <div class="reasons" id="reasons"></div>
+        </section>
+
+        <!-- MEMORIES -->
+        <section class="scene memories-scene reveal">
+            <h2>Our Beautiful Memories 💫</h2>
+            <div class="memories-grid">
+                <div class="memory-card" data-memory="lateNight">
+                    <div class="memory-icon">🌙</div>
+                    <h3>Late Night Talks</h3>
+                    <p id="memoryLateNight"></p>
+                </div>
+                <div class="memory-card" data-memory="firstMeeting">
+                    <div class="memory-icon">💫</div>
+                    <h3>The Day We'll Meet</h3>
+                    <p id="memoryFirstMeeting"></p>
+                </div>
+                <div class="memory-card" data-memory="care">
+                    <div class="memory-icon">💕</div>
+                    <h3>Your Care &amp; Voice</h3>
+                    <p id="memoryCare"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOVE METER + KISSES -->
+        <section class="scene play-scene reveal">
+            <h2>How Much I Love You 💕</h2>
+            <div class="love-meter"><div class="meter-fill" id="meterFill"></div><span class="love-percentage">∞%</span></div>
+            <h2 class="kiss-title">Virtual Kisses 💋</h2>
+            <div class="kiss-counter">
+                <span id="kissCount">0</span>
+                <button id="kissButton" class="btn">Send a Kiss 💋</button>
+            </div>
+            <p class="kiss-msg" id="kissMsg"></p>
+        </section>
+
+        <!-- FINALE TRIGGER -->
+        <section class="scene finale-scene reveal">
+            <div class="big-heart" id="bigHeart">❤️</div>
+            <button id="finaleBtn" class="btn btn-big">One last surprise… 💝</button>
+        </section>
+    </main>
+
+    <!-- FINALE OVERLAY -->
+    <div id="finale" class="finale" aria-hidden="true">
+        <canvas id="fw"></canvas>
+        <div class="finale-inner">
+            <div class="finale-lines" id="finaleLines"></div>
+            <h1 class="finale-big" id="finaleBig">I love you</h1>
+            <p class="finale-q" id="finaleQ"></p>
+            <button id="yesBtn" class="btn btn-big">Yes, forever 💖</button>
+            <p class="finale-reply" id="finaleReply"></p>
+            <p class="finale-end" id="finaleEnd"></p>
+            <button id="replayBtn" class="btn replay" type="button">Replay the magic 🎆</button>
+        </div>
+        <!-- balloons + pop-up words fly in this layer -->
+        <div id="balloons" class="balloons" aria-hidden="true">
+            <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+                <radialGradient id="bShade" cx=".35" cy=".3" r=".85">
+                    <stop offset="0" stop-color="#fff" stop-opacity=".5"/>
+                    <stop offset=".4" stop-color="#fff" stop-opacity="0"/>
+                    <stop offset="1" stop-color="#000" stop-opacity=".3"/>
+                </radialGradient>
+            </defs></svg>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="finale-show.js"></script>
+</body>
+</html>
